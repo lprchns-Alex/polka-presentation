@@ -2,10 +2,12 @@
 const topLine = (label, right) => `<div class="slide-top"><span class="pill">${label}</span><span>${right}</span></div>`;
 const shot = (name, alt, cls='') => `<img class="${cls}" src="assets/${name}.png" alt="${alt}" draggable="false">`;
 const timeSets = [
- ['Статья','Референс','Заметка'],
- ['Статья','Видео','Референс'],
- ['Видео','Статья','PDF'],
- ['PDF','Видео','Статья']
+ [{title:'Cosmic Cliffs',minutes:3,cover:'cosmic'}],
+ [{title:'Empathy Mapping',minutes:11,cover:'empathy'}],
+ [{title:'Paula Scher: Great design is serious',minutes:22,cover:'scher'}],
+ [{title:'Abstract: Paula Scher',minutes:41,cover:'abstract'},
+  {title:'The Man Who Created a Universal Visual Language',minutes:36,cover:'aicher'},
+  {title:'Helvetica',minutes:47,cover:'helvetica'}]
 ];
 window.POLKA_SLIDES = [
 {name:'Полка',time:'0:00–0:25 · 25 секунд',class:'cover',notes:'Я делаю Полку — библиотеку для статей, референсов, видео и файлов, которые сохраняю на потом. Мне хотелось не просто складывать ссылки, а возвращаться к ним и использовать. За время курса я прошёл путь от веб-прототипа до приложений для Mac и iPhone — сегодня покажу именно их.',html:`
@@ -24,19 +26,18 @@ window.POLKA_SLIDES = [
  <div class="solution-visual">${shot('mac-collection','Коллекция предметного дизайна в приложении Полка для Mac')}</div>
  <div class="steps"><div><span>01</span><h3>Сохранить</h3><p>Ссылка из любой<br>программы</p></div><div><span>02</span><h3>Разобрать</h3><p>Коллекции, теги,<br>«зачем сохраняю»</p></div><div><span>03</span><h3>Вернуться</h3><p>Подборка под<br>свободное время</p></div><div><span>04</span><h3>Прочитать</h3><p>Читалка и перевод<br>в приложении</p></div></div>
  <div class="slide-bottom">Данные только у человека, без серверов</div>`},
-{name:'Сохранить',time:'1:25–1:50 · 25 секунд',class:'save-slide',notes:'Я могу сохранить ссылку из любой программы сочетанием Control, Option, Command и D. Открывается маленькое окно, а название, обложку и текст Полка загружает сама. Здесь я показываю этот порядок действий схемой: клавиши, окно сохранения и новая находка во входящих.',html:`
+{name:'Сохранить',time:'1:25–1:50 · 25 секунд',class:'save-slide',notes:'Я могу сохранить ссылку из любой программы сочетанием Control, Option, Command и D. Открывается маленькое окно, а название, обложку и текст Полка загружает сама. Находка попадает во входящие — я могу разобрать её позже.',html:`
  ${topLine('03 / СОХРАНИТЬ','ИЗ ЛЮБОЙ ПРОГРАММЫ')}
  <div class="save-copy"><h2>Одно сочетание —<br><span class="muted">и ссылка<br>на полке.</span></h2><div class="key-row" aria-label="Control Option Command D"><kbd>⌃</kbd><kbd>⌥</kbd><kbd>⌘</kbd><kbd>D</kbd></div><p>Название, обложку<br>и текст — автоматически.</p></div>
  <div class="save-backdrop">${shot('mac-home','Главная Полки для Mac')}</div>
  <div class="quick-save motion">${shot('mac-quick-save','Окно «Добавить на полку» с ссылкой и выбором коллекции')}</div>
- <div class="inbox-demo motion" aria-label="Схема: новая находка во входящих"><span class="demo-overline">ВО ВХОДЯЩИХ</span><div class="new-finding"><div class="finding-cover"><span>Aa</span></div><div class="finding-copy"><strong>Сохранённая<br>статья</strong><span>practicaltypography.com</span></div><div class="skeleton"><i></i><i></i></div></div></div>
- <div class="slide-bottom demo-note">Схема взаимодействия · экраны приложения</div>`},
-{name:'Вернуться',time:'1:50–2:15 · 25 секунд',class:'return-slide dark',notes:'На главной я сделал подборку «Есть время»: выбираю, сколько минут могу выделить, и Полка предлагает подходящие находки. Так можно начать с того времени, которое есть сейчас, вместо просмотра всей библиотеки. Справа — схема переключения подборки, слева — настоящий экран приложения.',html:`
+ <div class="inbox-demo motion" aria-label="Новая находка во входящих"><span class="demo-overline">ВО ВХОДЯЩИХ</span><div class="new-finding"><div class="finding-cover"><span>Aa</span></div><div class="finding-copy"><strong>Сохранённая<br>статья</strong><span>practicaltypography.com</span></div><div class="skeleton"><i></i><i></i></div></div></div>`},
+{name:'Вернуться',time:'1:50–2:15 · 25 секунд',class:'return-slide dark',notes:'На главной я сделал подборку «Есть время»: выбираю, сколько минут могу выделить, и Полка предлагает подходящие находки. Так можно начать с того времени, которое есть сейчас, вместо просмотра всей библиотеки. Например, за три минуты я посмотрю Cosmic Cliffs, а если есть час — выберу фильм про Паулу Шер.',html:`
  ${topLine('04 / ВЕРНУТЬСЯ','ЕСТЬ ВРЕМЯ')}
  <h2>Подборка под<br><span class="sage-text">свободное время.</span></h2>
  <div class="return-visual">${shot('mac-home-dark','Главная Полки для Mac в тёмной теме')}</div>
  <div class="time-demo"><div class="time-demo-head"><h3>Есть время</h3><span>↗</span></div><div class="time-segments" aria-label="Выбор времени: 5, 15, 30 минут или час"><span class="selection motion"></span><span>5 мин</span><span>15 мин</span><span>30 мин</span><span>Час</span></div>
- <div class="time-lists">${timeSets.map((list,n)=>`<div class="time-list list-${n} motion">${list.map((type,i)=>`<div class="suggestion"><div class="suggestion-art art-${(n+i)%4}" aria-hidden="true">${['Aa','↗','▶','▤'][(n+i)%4]}</div><div><strong>${type}</strong><span>Из сохранённого</span></div><span class="row-arrow">↗</span></div>`).join('')}</div>`).join('')}</div><p class="demo-note">Схема подбора материалов</p></div>`},
+ <div class="time-lists">${timeSets.map((list,n)=>`<div class="time-list list-${n} motion">${list.map(item=>`<div class="suggestion"><div class="suggestion-cover cover-${item.cover}" aria-hidden="true"></div><div class="suggestion-copy"><strong>${item.title}</strong><span>${item.minutes} мин</span></div><span class="row-arrow">↗</span></div>`).join('')}</div>`).join('')}</div></div>`},
 {name:'Прочитать',time:'2:15–2:40 · 25 секунд',class:'reader-slide',notes:'Сохранённую статью я открываю прямо в Полке, там же читаю PDF и смотрю видео. Для перевода на русский использую встроенный переводчик Apple; к материалам можно оставлять цитаты и заметки. На этом экране — уже переведённая статья в приложении для Mac.',html:`
  ${topLine('05 / ПРОЧИТАТЬ','ЧИТАЛКА В ПОЛКЕ')}
  <div class="reader-copy"><h2>Открыть.<br>Понять.<br><span class="muted">Оставить<br>важное.</span></h2><div class="reader-features"><p>Перевод Apple<br>на русский</p><p>Цитаты и заметки</p><p>Статьи · PDF · видео</p></div></div>
@@ -44,7 +45,7 @@ window.POLKA_SLIDES = [
 {name:'Полка на iPhone',time:'2:40–3:10 · 30 секунд',class:'iphone-slide',notes:'С 26 октября Полка стоит на моём iPhone: могу сохранить ссылку из Safari через «Поделиться», открыть библиотеку и читать с переводом. Сейчас Mac выкладывает копию библиотеки в iCloud Drive, а телефон её читает — это ещё не двусторонняя синхронизация. Именно на живом телефоне я нашёл ошибку с обложками, которую не увидел в симуляторе.',html:`
  ${topLine('06 / IPHONE','НА МОЁМ IPHONE С 26 ОКТЯБРЯ')}
  <div class="iphone-copy"><h2>Та же полка —<br><span class="muted">в кармане.</span></h2><p>Ссылка из Safari<br>через «Поделиться».</p><div class="cloud-copy"><span>КОПИЯ БИБЛИОТЕКИ</span><p>Mac → iCloud Drive<br>→ iPhone</p><small>Mac записывает.<br>Телефон читает.</small></div></div>
- <div class="iphone-gallery"><figure><div class="phone-image">${shot('iphone-home','Главная Полки на iPhone')}<div class="share-sheet motion"><span class="sheet-handle"></span><strong>Поделиться</strong><div class="share-target motion"><b>П</b><span>Полка</span></div></div><div class="share-toast motion">✓ Сохранено<br>на Полку</div></div><figcaption>Сохранить<span>схема действия</span></figcaption></figure><figure><div class="phone-image">${shot('iphone-add','Окно добавления ссылки в Полку на iPhone')}</div><figcaption>Добавить</figcaption></figure><figure><div class="phone-image">${shot('iphone-translation','Перевод статьи на русский на iPhone')}</div><figcaption>Прочитать</figcaption></figure></div>`},
+ <div class="iphone-gallery"><figure><div class="phone-image">${shot('iphone-home','Главная Полки на iPhone')}<div class="share-sheet motion"><span class="sheet-handle"></span><strong>Поделиться</strong><div class="share-target motion"><b>П</b><span>Полка</span></div></div><div class="share-toast motion">✓ Сохранено<br>на Полку</div></div><figcaption>Сохранить</figcaption></figure><figure><div class="phone-image">${shot('iphone-add','Окно добавления ссылки в Полку на iPhone')}</div><figcaption>Добавить</figcaption></figure><figure><div class="phone-image">${shot('iphone-translation','Перевод статьи на русский на iPhone')}</div><figcaption>Прочитать</figcaption></figure></div>`},
 {name:'Развитие проекта',time:'3:10–3:40 · 30 секунд',class:'evolution dark',notes:'В сентябре я пользовался своим веб-прототипом, а 17 октября начал заново на Swift. Уже 19 октября у меня была бета для Mac с установщиком и первой тестировщицей. С 24 по 26 октября я сделал iPhone-версию, завёл аккаунт разработчика Apple и поставил приложение на настоящий телефон.',html:`
  ${topLine('07 / ПРОЦЕСС','СЕНТЯБРЬ → ОКТЯБРЬ')}
  <h2>Проект менялся.<br><span class="sage-text">Сценарий становился яснее.</span></h2>
